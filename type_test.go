@@ -13,7 +13,7 @@ func TestTypeMarshalJSON(t *testing.T) {
 		in       db.Type
 		expected string
 	}{{
-		in:       db.TypeMysql,
+		in:       db.TypeMySQL,
 		expected: "mysql",
 	}, {
 		in:       db.TypePostgres,
@@ -44,7 +44,7 @@ func TestTypeUnmarshalJSONString(t *testing.T) {
 		expected db.Type
 	}{{
 		in:       "mysql",
-		expected: db.TypeMysql,
+		expected: db.TypeMySQL,
 	}, {
 		in:       "postgres",
 		expected: db.TypePostgres,
@@ -75,7 +75,7 @@ func TestTypeUnmarshalJSONUint(t *testing.T) {
 		expected db.Type
 	}{{
 		in:       1,
-		expected: db.TypeMysql,
+		expected: db.TypeMySQL,
 	}, {
 		in:       2,
 		expected: db.TypePostgres,

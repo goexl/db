@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	TypeMysql Type = iota + 1
+	TypeMySQL Type = iota + 1
 	TypePostgres
 	TypeSQLite
 	TypeSQLite3
@@ -22,7 +22,7 @@ type Type uint8
 
 func (t *Type) String() (result string) {
 	switch *t {
-	case TypeMysql:
+	case TypeMySQL:
 		result = "mysql"
 	case TypePostgres:
 		result = "postgres"
@@ -43,7 +43,7 @@ func (t *Type) String() (result string) {
 
 func (t *Type) MarshalJSON() (bytes []byte, err error) {
 	switch *t {
-	case TypeMysql:
+	case TypeMySQL:
 		bytes = []byte("mysql")
 	case TypePostgres:
 		bytes = []byte("postgres")
@@ -76,7 +76,7 @@ func (t *Type) UnmarshalJSON(bytes []byte) (err error) {
 func (t *Type) unmarshalUint(value uint8) (err error) {
 	switch value {
 	case 1:
-		*t = TypeMysql
+		*t = TypeMySQL
 	case 2:
 		*t = TypePostgres
 	case 3:
@@ -97,7 +97,7 @@ func (t *Type) unmarshalUint(value uint8) (err error) {
 func (t *Type) unmarshalString(value string) (err error) {
 	switch strings.ToLower(value) {
 	case "mysql":
-		*t = TypeMysql
+		*t = TypeMySQL
 	case "postgres":
 		*t = TypePostgres
 	case "sqlite":
