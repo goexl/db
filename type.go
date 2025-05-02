@@ -20,6 +20,27 @@ const (
 // Type 数据库类型
 type Type uint8
 
+func (t *Type) String() (result string) {
+	switch *t {
+	case TypeMysql:
+		result = "mysql"
+	case TypePostgres:
+		result = "postgres"
+	case TypeSQLite:
+		result = "sqlite"
+	case TypeSQLite3:
+		result = "sqlite3"
+	case TypeOracle:
+		result = "oracle"
+	case TypeSQLServer:
+		result = "sqlserver"
+	default:
+		result = "unknown"
+	}
+
+	return
+}
+
 func (t *Type) MarshalJSON() (bytes []byte, err error) {
 	switch *t {
 	case TypeMysql:
