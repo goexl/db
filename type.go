@@ -62,6 +62,10 @@ func (t *Type) MarshalJSON() (bytes []byte, err error) {
 	return
 }
 
+func (t *Type) Unmarshal(bytes []byte) error {
+	return t.UnmarshalJSON(bytes)
+}
+
 func (t *Type) UnmarshalJSON(bytes []byte) (err error) {
 	num := new(uint8)
 	if ne := json.Unmarshal(bytes, num); nil == ne {
