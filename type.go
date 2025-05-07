@@ -1,7 +1,6 @@
 package db
 
 import (
-	"encoding/json"
 	"strings"
 
 	"github.com/goexl/exception"
@@ -9,16 +8,16 @@ import (
 )
 
 const (
-	TypeMySQL Type = iota + 1
-	TypePostgres
-	TypeSQLite
-	TypeSQLite3
-	TypeOracle
-	TypeSQLServer
+	TypeMySQL     Type = "mysql"
+	TypePostgres  Type = "postgres"
+	TypeSQLite    Type = "sqlite"
+	TypeSQLite3   Type = "sqlite3"
+	TypeOracle    Type = "oracle"
+	TypeSQLServer Type = "sqlserver"
 )
 
 // Type 数据库类型
-type Type uint8
+type Type string
 
 func (t *Type) String() (result string) {
 	switch *t {
@@ -67,39 +66,7 @@ func (t *Type) Unmarshal(bytes []byte) error {
 }
 
 func (t *Type) UnmarshalJSON(bytes []byte) (err error) {
-	num := new(uint8)
-	if ne := json.Unmarshal(bytes, num); nil == ne {
-		err = t.unmarshalUint(*num)
-	} else {
-		err = t.unmarshalString(string(bytes))
-	}
-
-	return
-}
-
-func (t *Type) unmarshalUint(value uint8) (err error) {
-	switch value {
-	case 1:
-		*t = TypeMySQL
-	case 2:
-		*t = TypePostgres
-	case 3:
-		*t = TypeSQLite
-	case 4:
-		*t = TypeSQLite3
-	case 5:
-		*t = TypeOracle
-	case 6:
-		*t = TypeSQLServer
-	default:
-		err = exception.New().Message("未被支持的数据库").Field(field.New("type", *t)).Build()
-	}
-
-	return
-}
-
-func (t *Type) unmarshalString(value string) (err error) {
-	switch strings.ToLower(value) {
+	switch strings.ToLower(string(bytes)) {
 	case "mysql":
 		*t = TypeMySQL
 	case "postgres":
