@@ -10,6 +10,7 @@ import (
 const (
 	TypeMySQL     Type = "mysql"
 	TypePostgres  Type = "postgres"
+	TypePgx       Type = "gpx"
 	TypeSQLite    Type = "sqlite"
 	TypeSQLite3   Type = "sqlite3"
 	TypeOracle    Type = "oracle"
@@ -25,6 +26,8 @@ func (t *Type) String() (result string) {
 		result = "mysql"
 	case TypePostgres:
 		result = "postgres"
+	case TypePgx:
+		result = "pgx"
 	case TypeSQLite:
 		result = "sqlite"
 	case TypeSQLite3:
@@ -46,6 +49,8 @@ func (t *Type) MarshalJSON() (bytes []byte, err error) {
 		bytes = []byte("mysql")
 	case TypePostgres:
 		bytes = []byte("postgres")
+	case TypePgx:
+		bytes = []byte("pgx")
 	case TypeSQLite:
 		bytes = []byte("sqlite")
 	case TypeSQLite3:
@@ -71,6 +76,8 @@ func (t *Type) UnmarshalJSON(bytes []byte) (err error) {
 		*t = TypeMySQL
 	case "postgres":
 		*t = TypePostgres
+	case "pgx":
+		*t = TypePgx
 	case "sqlite":
 		*t = TypeSQLite
 	case "sqlite3":
