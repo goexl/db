@@ -10,7 +10,7 @@ import (
 const (
 	TypeMySQL     Type = "mysql"
 	TypePostgres  Type = "postgres"
-	TypePgx       Type = "gpx"
+	TypePgx       Type = "pgx"
 	TypeSQLite    Type = "sqlite"
 	TypeSQLite3   Type = "sqlite3"
 	TypeOracle    Type = "oracle"
